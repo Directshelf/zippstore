@@ -1,0 +1,328 @@
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveal for grid items */
+.grid .reveal:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.grid .reveal:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.grid .reveal:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+.grid .reveal:nth-child(5) {
+  transition-delay: 0.4s;
+}
+
+.grid .reveal:nth-child(6) {
+  transition-delay: 0.5s;
+}
+
+/* Hover animations */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Pulse animation for highlights */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Background move animation */
+.bg-move {
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Connection line animation */
+@keyframes drawLine {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+/* Vertical line smooth growth */
+.vertical-line-grow {
+  transition: height 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Icon pulse animation */
+@keyframes iconPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.icon-pulse {
+  animation: iconPulse 2s infinite;
+}
+
+/* Color transition for active step */
+.step-box {
+  transition: all 0.5s ease;
+}
+
+.step-box.active {
+  background-color: #192f59;
+  color: white;
+}
+
+/* Icon transition */
+.step-icon {
+  transition: all 0.5s ease;
+}
+
+.step-icon.active {
+  background-color: white;
+  color: #192f59;
+}
+
+/* Circle animation */
+@keyframes circleAnimation {
+  0% {
+    stroke-dashoffset: 283;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Counter animation */
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.counter-animate {
+  animation: countUp 0.5s ease-out forwards;
+}
+
+/* Format card hover effects */
+.format-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  transition: height 0.3s ease;
+  z-index: 1;
+}
+
+.format-card:hover::after {
+  height: 100%;
+}
+
+/* Map marker pulse */
+@keyframes markerPulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.marker-pulse {
+  animation: markerPulse 2s infinite;
+}
+
+/* Circle fill animation for stats section */
+@keyframes circleFill {
+  from {
+    stroke-dashoffset: 283;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Stats Number Animations */
+@keyframes numberCountUp {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Apply animated circle fill */
+.circle-animate {
+  animation: circleFill 1.5s ease-out forwards;
+}
+
+/* Ensure SVG animations run smoothly */
+svg circle {
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+/* Rotating words animation */
+.word-rotate {
+  position: absolute;
+  opacity: 0;
+  animation: rotateWord 6s linear infinite 0s;
+}
+
+.word-rotate:nth-child(2) {
+  animation-delay: 2s;
+}
+
+.word-rotate:nth-child(3) {
+  animation-delay: 4s;
+}
+
+@keyframes rotateWord {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  2% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  33% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+/* Popup animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Add smooth animation for popups */
+.popup-enter {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Floating animation for CTA button */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Button shine effect */
+@keyframes shine {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg);
+  animation: shine 3s infinite;
+  background-size: 50% 100%;
+  z-index: 1;
+}

@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+@layer utilities {
+  /* Mobile-first responsive utilities */
+  .text-responsive {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+  
+  .btn-responsive {
+    @apply px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base;
+  }
+  
+  .container-responsive {
+    @apply px-4 sm:px-6 md:px-8;
+  }
+  
+  /* Header navigation styles */
+  .nav-item {
+    @apply relative text-lg font-semibold;
+  }
+  
+  /* Hover effect styles */
+  .menu-item {
+    @apply px-4 py-2 rounded-lg transition-all duration-300;
+  }
+  
+  .menu-item:hover {
+    @apply bg-blue-50 text-navy-700;
+  }
+}
