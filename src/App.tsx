@@ -621,6 +621,31 @@ function App() {
         </div>
       </section>
       
+      {/* Partners Section */}
+      <section id="partners" className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12 md:mb-16 reveal">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Partners</h2>
+            <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
+              Trusted by leading property consultants and real estate experts
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-4xl mx-auto">
+            {/* Yards & Feet Property Consultants Logo */}
+            <div className="reveal flex items-center justify-center">
+              <div className="p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                <img 
+                  src="/yards-feet-logo.png" 
+                  alt="Yards & Feet Property Consultants" 
+                  className="h-16 sm:h-20 w-auto object-contain"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
       {/* Final CTA Section */}
       <section className="py-16 md:py-20 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
