@@ -62,25 +62,25 @@ function App() {
       const sectionTop = rect.top;
       const sectionHeight = rect.height;
       const windowHeight = window.innerHeight;
-      
+
       // Only calculate when section is visible or partially visible
       if (sectionTop < windowHeight && sectionTop > -sectionHeight) {
         // Create a smoother range with more granular steps
         const visibleRange = windowHeight + sectionHeight;
         const scrolled = windowHeight - sectionTop;
-        
+
         // Add more easing to the animation
         const scrollProgress = Math.min(1, Math.max(0, scrolled / visibleRange));
         const easedProgress = Math.pow(scrollProgress, 1.5) * 100; // Power function for smoother easing
-        
+
         // Limit scroll range to prevent the line from going beyond the section
         const finalProgress = Math.min(98, Math.max(0, easedProgress));
-        
+
         setLineHeight(finalProgress);
-        
+
         // Calculate a normalized value for determining active step with smoother transitions
         const normalizedPercentage = finalProgress;
-        
+
         // Smoother thresholds with hysteresis to prevent flickering
         if (normalizedPercentage < 33) {
           setActiveStep(0);
@@ -105,7 +105,7 @@ function App() {
       if (statsRef.current) {
         const statsRect = statsRef.current.getBoundingClientRect();
         const windowHeight = window.innerHeight;
-        
+
         // Trigger counter animation when stats section is 30% visible
         if (statsRect.top < windowHeight * 0.7 && !animationStarted.current) {
           setCountersVisible(true);
@@ -115,7 +115,7 @@ function App() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
+
     // Run once on component mount
     updateLineHeight();
     checkStatsVisibility();
@@ -142,26 +142,26 @@ function App() {
       const duration = 2000;
       const interval = 20;
       const steps = duration / interval;
-      
+
       let currentStep = 0;
-      
+
       const timer = setInterval(() => {
         currentStep++;
         const progress = Math.min(1, currentStep / steps);
-        
+
         // Using eased progress for smoother animation
         const easedProgress = 1 - Math.pow(1 - progress, 3); // Cubic ease-out
-        
+
         setCount1(0); // Zero Lease Hassles stays at 0
         setCount2(Math.round(75 * easedProgress)); // 75% Reduced Launch Costs
         setCount3(Math.round(100 * easedProgress)); // 100% Omnichannel Integration (changed from 80%)
         setCount4(Math.min(6, Math.round(6 * easedProgress))); // 4-6 Weeks Average Launch Time
-        
+
         if (currentStep >= steps) {
           clearInterval(timer);
         }
       }, interval);
-      
+
       return () => clearInterval(timer);
     }
   }, [countersVisible]);
@@ -209,61 +209,65 @@ function App() {
   return (
     <div className="font-sans">
       <Header openContactPopup={openContactPopup} />
-      
+
       {/* Hero Section */}
       <section id="home" className="relative min-h-[100vh] w-full overflow-hidden flex items-center justify-center">
         {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 bg-gray-900">
-          <img 
-            src="https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=2000&q=80" 
+          <img
+            src="/background/ZIppstorImg.png"
             alt="Retail Store Interior"
-            className="w-full h-full object-cover opacity-40"
+            className="w-full h-full object-cover opacity-80"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         </div>
-        
+
         {/* Hero Content */}
         <div className="container mx-auto px-4 flex items-center justify-center relative z-10">
           <div className="max-w-5xl mx-auto text-center py-16">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white reveal">
-              We solve the hardest part of retail
-              <span className="relative inline-block">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-white reveal">
+              We solve the hardest part of retail.
+              {/* <span className="relative inline-block">
                 <span className="word-rotate absolute inset-0 text-blue-500">right size</span>
                 <span className="word-rotate absolute inset-0 text-blue-500">right time</span>
                 <span className="word-rotate absolute inset-0 text-blue-500">right there</span>
                 <span className="opacity-0">right there</span>
-              </span>
+              </span> */}
             </h1>
-            
+
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-white">
+              Helping brands launch and scale offline stores with speed, flexibility, and control.
+            </h2>
+
             {/* Out of Stock CTA - Moved from CTA section to hero */}
             <div className="mt-8 max-w-3xl mx-auto reveal">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-blue-500">
+              {/* <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-blue-500">
                 Never lose a customer to 'Out of Stock' again.
-              </h2>
-              <button 
+              </h2> */}
+              {/* <button
                 onClick={openContactPopup}
                 className="bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-md text-base sm:text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300 pulse"
               >
                 Get Started Today
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
       </section>
-      
+
       {/* Why ZippStore Section */}
-      <section id="why-zippstore" className="py-16 md:py-24 bg-white relative">
+      <section id="why-zippstore" className="py-10 md:py-16 bg-white relative">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 md:mb-16 reveal">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Why ZippStore?</h2>
-            <p className="text-lg sm:text-xl font-bold max-w-3xl mx-auto text-blue-600 italic">
+          <div className="text-center mb-8 md:mb-12 reveal">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Why ZippStor?</h2>
+            {/* <p className="text-lg sm:text-xl font-bold max-w-3xl mx-auto text-blue-600 italic">
               "Getting a customer to walk into the store is already a major challenge - missing their size at that moment risks losing both satisfaction and future sales."
-            </p> 
-            <p className="text-gray-700 max-w-3xl mx-auto mt-2">
+            </p> */}
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mt-2">
               We offer a comprehensive solution to empower your brand's offline presence
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Feature 1 */}
             <div className="bg-white shadow-lg p-4 sm:p-6 rounded-lg reveal hover-lift">
@@ -277,7 +281,7 @@ function App() {
                 We sign the lease, not you. We cover the majority of initial build-out costs.
               </p>
             </div>
-            
+
             {/* Feature 2 */}
             <div className="bg-white shadow-lg p-4 sm:p-6 rounded-lg reveal hover-lift">
               <div className="flex items-center mb-4">
@@ -290,7 +294,7 @@ function App() {
                 From display racks to billing systems—everything's set up. Just walk in and start selling.
               </p>
             </div>
-            
+
             {/* Feature 3 */}
             <div className="bg-white shadow-lg p-4 sm:p-6 rounded-lg reveal hover-lift">
               <div className="flex items-center mb-4">
@@ -303,7 +307,7 @@ function App() {
                 Never Go Stock out as our Local fulfillment hubs are approximately 5Km so that replenishment will happen instantly.
               </p>
             </div>
-            
+
             {/* Feature 4 */}
             <div className="bg-white shadow-lg p-4 sm:p-6 rounded-lg reveal hover-lift">
               <div className="flex items-center mb-4">
@@ -316,7 +320,7 @@ function App() {
                 Run pop-ups, pilot products, or explore new markets—without heavy overheads.
               </p>
             </div>
-            
+
             {/* Feature 5 */}
             <div className="bg-white shadow-lg p-4 sm:p-6 rounded-lg reveal hover-lift">
               <div className="flex items-center mb-4">
@@ -329,7 +333,7 @@ function App() {
                 Explore locations, compare pricing, and book retail space 100% online—no agents, no delays.
               </p>
             </div>
-            
+
             {/* Feature 6 */}
             <div className="bg-white shadow-lg p-4 sm:p-6 rounded-lg reveal hover-lift">
               <div className="flex items-center mb-4">
@@ -345,36 +349,36 @@ function App() {
           </div>
         </div>
       </section>
-      
+
       {/* Statistics Section */}
-      <section id="performance" ref={statsRef} className="py-16 md:py-20 bg-gray-100" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1579547945413-497e1b99dac0?auto=format&fit=crop&w=2000&q=80")', backgroundSize: 'cover', backgroundBlendMode: 'soft-light' }}>
+      <section id="performance" ref={statsRef} className="py-10 md:py-14 bg-gray-100" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1579547945413-497e1b99dac0?auto=format&fit=crop&w=2000&q=80")', backgroundSize: 'cover', backgroundBlendMode: 'soft-light' }}>
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 md:mb-16 reveal">
+          <div className="text-center mb-8 md:mb-12 reveal">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Launch Fast. Spend Smart. Perform Big.</h2>
-            <p className="text-sm sm:text-base text-gray-700 max-w-3xl mx-auto">
-              ZippStore powers rapid retail rollouts by securing prime spots at lower costs.
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mt-2">
+              ZippStor powers rapid retail rollouts by securing prime spots at lower costs.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-5xl mx-auto">
             {/* Zero Lease Hassles (changed from Financial Burden) */}
             <div className="text-center reveal">
               <div className="relative w-28 h-28 sm:w-36 sm:h-36 mx-auto mb-4">
                 <svg className="w-full h-full" viewBox="0 0 100 100">
                   {/* Background circle */}
-                  <circle 
-                    cx="50" cy="50" r="45" 
-                    fill="none" 
-                    stroke="#e5e5e5" 
+                  <circle
+                    cx="50" cy="50" r="45"
+                    fill="none"
+                    stroke="#e5e5e5"
                     strokeWidth="2"
                   />
                   {/* Progress circle - full navy circle */}
-                  <circle 
-                    cx="50" cy="50" r="45" 
-                    fill="none" 
-                    stroke="#3B82F6" 
+                  <circle
+                    cx="50" cy="50" r="45"
+                    fill="none"
+                    stroke="#3B82F6"
                     strokeWidth="3"
-                    strokeDasharray="283" 
+                    strokeDasharray="283"
                     strokeDashoffset="0"
                     strokeLinecap="round"
                   />
@@ -385,25 +389,25 @@ function App() {
               </div>
               <h3 className="text-base sm:text-xl font-semibold mb-2 text-gray-900">Zero Lease Hassles</h3>
             </div>
-            
+
             {/* 75% Reduced Launch Costs - With animation */}
             <div className="text-center reveal">
               <div className="relative w-28 h-28 sm:w-36 sm:h-36 mx-auto mb-4">
                 <svg className="w-full h-full" viewBox="0 0 100 100">
                   {/* Background circle */}
-                  <circle 
-                    cx="50" cy="50" r="45" 
-                    fill="none" 
-                    stroke="#e5e5e5" 
+                  <circle
+                    cx="50" cy="50" r="45"
+                    fill="none"
+                    stroke="#e5e5e5"
                     strokeWidth="2"
                   />
                   {/* Progress circle with animation */}
-                  <circle 
-                    cx="50" cy="50" r="45" 
-                    fill="none" 
-                    stroke="#3B82F6" 
-                    strokeWidth="3" 
-                    strokeDasharray="283" 
+                  <circle
+                    cx="50" cy="50" r="45"
+                    fill="none"
+                    stroke="#3B82F6"
+                    strokeWidth="3"
+                    strokeDasharray="283"
                     strokeDashoffset={283 - (283 * count2 / 100)}
                     strokeLinecap="round"
                     className="transition-all duration-1000 ease-out"
@@ -415,25 +419,25 @@ function App() {
               </div>
               <h3 className="text-base sm:text-xl font-semibold mb-2 text-gray-900">Reduced Launch Costs</h3>
             </div>
-            
+
             {/* 100% Omnichannel Integration - With animation (changed from 80%) */}
             <div className="text-center reveal">
               <div className="relative w-28 h-28 sm:w-36 sm:h-36 mx-auto mb-4">
                 <svg className="w-full h-full" viewBox="0 0 100 100">
                   {/* Background circle */}
-                  <circle 
-                    cx="50" cy="50" r="45" 
-                    fill="none" 
-                    stroke="#e5e5e5" 
+                  <circle
+                    cx="50" cy="50" r="45"
+                    fill="none"
+                    stroke="#e5e5e5"
                     strokeWidth="2"
                   />
                   {/* Progress circle with animation */}
-                  <circle 
-                    cx="50" cy="50" r="45" 
-                    fill="none" 
-                    stroke="#3B82F6" 
-                    strokeWidth="3" 
-                    strokeDasharray="283" 
+                  <circle
+                    cx="50" cy="50" r="45"
+                    fill="none"
+                    stroke="#3B82F6"
+                    strokeWidth="3"
+                    strokeDasharray="283"
                     strokeDashoffset={283 - (283 * count3 / 100)}
                     strokeLinecap="round"
                     className="transition-all duration-1000 ease-out"
@@ -445,25 +449,25 @@ function App() {
               </div>
               <h3 className="text-base sm:text-xl font-semibold mb-2 text-gray-900">Omnichannel Integration</h3>
             </div>
-            
+
             {/* 4-6 Weeks Average Launch Time (changed from 4 Weeks) */}
             <div className="text-center reveal">
               <div className="relative w-28 h-28 sm:w-36 sm:h-36 mx-auto mb-4">
                 <svg className="w-full h-full" viewBox="0 0 100 100">
                   {/* Background circle */}
-                  <circle 
-                    cx="50" cy="50" r="45" 
-                    fill="none" 
-                    stroke="#e5e5e5" 
+                  <circle
+                    cx="50" cy="50" r="45"
+                    fill="none"
+                    stroke="#e5e5e5"
                     strokeWidth="2"
                   />
                   {/* Full navy circle */}
-                  <circle 
-                    cx="50" cy="50" r="45" 
-                    fill="none" 
-                    stroke="#3B82F6" 
-                    strokeWidth="3" 
-                    strokeDasharray="283" 
+                  <circle
+                    cx="50" cy="50" r="45"
+                    fill="none"
+                    stroke="#3B82F6"
+                    strokeWidth="3"
+                    strokeDasharray="283"
                     strokeDashoffset="0"
                     strokeLinecap="round"
                   />
@@ -478,17 +482,17 @@ function App() {
           </div>
         </div>
       </section>
-      
+
       {/* What We Offer Section */}
-      <section id="what-we-offer" className="py-16 md:py-24 bg-gray-50">
+      <section id="what-we-offer" className="py-10 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 md:mb-16 reveal">
+          <div className="text-center mb-8 md:mb-12 reveal">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">What We Offer</h2>
-            <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mt-2">
               A comprehensive suite of services to support your brand's growth
             </p>
           </div>
-          
+
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 max-w-6xl mx-auto">
             {/* Service 1 */}
             <div className="bg-white p-4 rounded-lg shadow-md reveal hover-lift">
@@ -500,7 +504,7 @@ function App() {
                 Identifying the ideal offline destination for your brand.
               </p>
             </div>
-            
+
             {/* Service 2 */}
             <div className="bg-white p-4 rounded-lg shadow-md reveal hover-lift">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-navy-700 rounded-full flex items-center justify-center mb-4 mx-auto">
@@ -511,7 +515,7 @@ function App() {
                 Designing and executing store concepts that reflect your brand.
               </p>
             </div>
-            
+
             {/* Service 3 */}
             <div className="bg-white p-4 rounded-lg shadow-md reveal hover-lift">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-navy-700 rounded-full flex items-center justify-center mb-4 mx-auto">
@@ -522,7 +526,7 @@ function App() {
                 Effortless POS integrations and trained staff support.
               </p>
             </div>
-            
+
             {/* Service 4 */}
             <div className="bg-white p-4 rounded-lg shadow-md reveal hover-lift">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-navy-700 rounded-full flex items-center justify-center mb-4 mx-auto">
@@ -533,7 +537,7 @@ function App() {
                 Boosting visibility and engagement for your physical stores.
               </p>
             </div>
-            
+
             {/* Service 5 */}
             <div className="bg-white p-4 rounded-lg shadow-md reveal hover-lift">
               <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white border-2 border-navy-700 rounded-full flex items-center justify-center mb-4 mx-auto">
@@ -547,23 +551,23 @@ function App() {
           </div>
         </div>
       </section>
-      
+
       {/* Our Formats Section - updated to display 4 cards in one row */}
-      <section id="formats" className="py-16 md:py-24 bg-white">
+      <section id="formats" className="py-10 md:py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-8 md:mb-12 reveal">
+          <div className="text-center mb-6 md:mb-10 reveal">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Retail Ecosystem</h2>
-            <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mt-2">
               Our diverse portfolio accommodates every brand expansion strategy
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
             {formatCards.map((format, index) => (
               <div key={format.id} className="reveal" style={{ transitionDelay: `${index * 0.1}s` }}>
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden hover-lift h-full">
                   <div className="relative h-36 sm:h-44 overflow-hidden">
-                    <img 
+                    <img
                       src={format.image}
                       alt={format.title}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
@@ -587,46 +591,245 @@ function App() {
           </div>
         </div>
       </section>
-      
-      {/* About Us Section - Moved to after Retail Ecosystem section */}
-      <section id="about" className="py-16 md:py-24 bg-gray-50">
+
+      {/* Associated Brands Section */}
+      <section id="brands" className="py-10 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 md:mb-16 reveal">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">About Us</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto">
-              Global Experience, Local Impact
+          <div className="text-center mb-8 md:mb-12 reveal">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Associated Brands</h2>
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mt-2">
+              Partnering with India's leading fashion and lifestyle brands
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
-            <div className="reveal">
-              <img 
-                src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&w=800&q=80" 
-                alt="Global Experience" 
-                className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-lg"
-              />
-            </div>
-            <div className="flex flex-col justify-center reveal">
-              <p className="text-sm sm:text-base text-gray-700 mb-4">
-                With over a <span className="font-bold">15+ years of real estate expertise and operations across 10+ countries</span>, our founders bring a wealth of global insight and strategic vision to the Indian retail landscape.
-              </p>
-              <p className="text-sm sm:text-base text-gray-700 mb-4">
-                Our mission is to be a seamless offline enabler and ecosystem for brands—empowering them to source, design, execute, and operate retail stores with ease.
-              </p>
-              <p className="text-sm sm:text-base text-gray-700">
-                We bring together strategic thinking, operational excellence, and a future-ready mindset to help brands expand their physical presence with speed, flexibility, and precision—all while keeping customer experience at the core.
-              </p>
+
+          {/* Row 1 - Scrolling Left to Right */}
+          <div className="mb-8 overflow-hidden bg-white rounded-lg py-6">
+            <div className="logo-row-ltr flex gap-6 md:gap-8 px-4">
+              {/* Spykar */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/spykar-jeans-logo-png_seeklogo-335709.png"
+                    alt="Spykar"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* The Pant Project */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/pant-project.png"
+                    alt="The Pant Project"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Jade Blue */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/jade-blue.webp"
+                    alt="Jade Blue"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Raymond */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/raymond.webp"
+                    alt="Raymond"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Killer Jeans */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/killer.webp"
+                    alt="Killer Jeans"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Wrangler */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/Wrangler.png"
+                    alt="Wrangler"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Bata India */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/bata.png"
+                    alt="Bata India"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Lawman Jeans */}
+              {/* <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/lawman.png"
+                    alt="Lawman Jeans"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div> */}
+
+              {/* Indian Terrain */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/indian-terrain.png"
+                    alt="Indian Terrain"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Big Hello */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/bighello.png"
+                    alt="Big Hello"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
             </div>
           </div>
+
+          {/* Row 2 - Scrolling Right to Left */}
+          <div className="mb-8 overflow-hidden bg-white rounded-lg py-6">
+            <div className="logo-row-rtl flex gap-6 md:gap-8 px-4">
+              {/* Jockey India */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/jockey.jpg"
+                    alt="Jockey India"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Jack & Jones India */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/jack-jones.jpg"
+                    alt="Jack & Jones India"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Max Fashion */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/max.png"
+                    alt="Max Fashion"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Easybuy */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/easybuy.jpeg"
+                    alt="Easybuy"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Celio India */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/celio.jpg"
+                    alt="Celio India"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Lee */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/Lee.png"
+                    alt="Lee"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Asian Footwear */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/asian-footwear.png"
+                    alt="Asian Footwear"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Lenskart */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/Lenskart.png"
+                    alt="Lenskart"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* E-Come Store Logo */}
+              <div className="logo-item flex-shrink-0 w-40 h-40 sm:w-48 sm:h-48 flex items-center justify-center">
+                <div className="p-4 bg-gray-50 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full h-full flex items-center justify-center">
+                  <img
+                    src="/Logos/e_come_100_store_logo_.11.webp"
+                    alt="E-Come Store"
+                    className="max-h-28 sm:max-h-36 w-auto object-contain"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
-      
+
       {/* Partners Section */}
-      <section id="partners" className="py-16 md:py-24 bg-white">
+      <section id="partners" className="py-10 md:py-16 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 md:mb-16 reveal">
+          <div className="text-center mb-8 md:mb-12 reveal">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Partners</h2>
-            <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mt-2">
               Trusted by leading property consultants and real estate experts
             </p>
           </div>
@@ -646,211 +849,79 @@ function App() {
         </div>
       </section>
 
-      {/* Associated Brands Section */}
-      <section id="brands" className="py-16 md:py-24 bg-gray-50">
+      {/* About Us Section - Moved to after Retail Ecosystem section */}
+      <section id="about" className="pt-4 md:pt-6 pb-10 md:pb-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12 md:mb-16 reveal">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">Our Associated Brands</h2>
-            <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto">
-              Partnering with India's leading fashion and lifestyle brands
+          <div className="text-center mb-8 md:mb-12 reveal">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 text-gray-900">About Us</h2>
+            <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto mt-2">
+              Global Experience, Local Impact
             </p>
           </div>
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-5 gap-6 md:gap-8 max-w-5xl mx-auto">
-            {/* Spykar */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/spykar.jpeg"
-                  alt="Spykar"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto">
+            <div className="reveal">
+              <img
+                src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?auto=format&fit=crop&w=800&q=80"
+                alt="Global Experience"
+                className="w-full h-48 sm:h-64 object-cover rounded-lg shadow-lg"
+              />
             </div>
-
-            {/* The Pant Project */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/pant-project.png"
-                  alt="The Pant Project"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Jade Blue */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/jade-blue.webp"
-                  alt="Jade Blue"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Raymond */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/raymond.webp"
-                  alt="Raymond"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Killer Jeans */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/killer.webp"
-                  alt="Killer Jeans"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Jockey India */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/jockey.jpg"
-                  alt="Jockey India"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Jack & Jones India */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/jack-jones.jpg"
-                  alt="Jack & Jones India"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Max Fashion */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/max.png"
-                  alt="Max Fashion"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Easybuy */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/easybuy.jpeg"
-                  alt="Easybuy"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Celio India */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/celio.jpg"
-                  alt="Celio India"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Bata India */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/bata.png"
-                  alt="Bata India"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Lawman Jeans */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/lawman.png"
-                  alt="Lawman Jeans"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Indian Terrain */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/indian-terrain.png"
-                  alt="Indian Terrain"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Big Hello */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/bighello.png"
-                  alt="Big Hello"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
-            </div>
-
-            {/* Asian Footwear */}
-            <div className="reveal flex items-center justify-center">
-              <div className="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 w-full aspect-square flex items-center justify-center">
-                <img
-                  src="/Logos/asian-footwear.png"
-                  alt="Asian Footwear"
-                  className="max-h-16 sm:max-h-20 w-auto object-contain"
-                />
-              </div>
+            <div className="flex flex-col justify-center reveal">
+              <p className="text-sm sm:text-base text-gray-700 mb-4">
+                With over a <span className="font-bold">15+ years of real estate expertise and operations across 10+ countries</span>, our founders bring a wealth of global insight and strategic vision to the Indian retail landscape.
+              </p>
+              <p className="text-sm sm:text-base text-gray-700 mb-4">
+                Our mission is to be a seamless offline enabler and ecosystem for brands—empowering them to source, design, execute, and operate retail stores with ease.
+              </p>
+              <p className="text-sm sm:text-base text-gray-700">
+                We bring together strategic thinking, operational excellence, and a future-ready mindset to help brands expand their physical presence with speed, flexibility, and precision—all while keeping customer experience at the core.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-16 md:py-20 bg-white relative overflow-hidden">
+
+      {/* Contact Us Today Section */}
+      <section className="py-10 md:py-16 bg-gray-900 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-blue-500 reveal">
-              "Turn digital success into offline growth<br/>
-              with Zippstore's flexible, end-to-end retail solutions."
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-white reveal">
+              Reach out Us
             </h2>
-            <div className="reveal mt-8" style={{ transitionDelay: '0.2s' }}>
-              <button 
-                onClick={openContactPopup}
-                className="bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-md text-base sm:text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300 pulse"
+            <p className="text-lg sm:text-xl text-gray-300 mb-8 reveal">
+              Ready to transform your retail presence? Get in touch with our team to explore how ZippStor can accelerate your growth.
+            </p>
+            <div className="bg-white rounded-lg p-8 md:p-12 reveal" style={{ transitionDelay: '0.2s' }}>
+              <p className="text-gray-700 text-base sm:text-lg mb-4">
+                Reach out to our sales team:
+              </p>
+              <a
+                href="mailto:sales@zippstor.com"
+                className="text-2xl sm:text-3xl font-bold text-blue-600 hover:text-blue-700 transition-colors break-all"
               >
-                Get Started Today
-              </button>
+                sales@zippstor.com
+              </a>
+              <div className="mt-8">
+                <button
+                  onClick={openContactPopup}
+                  className="bg-blue-600 text-white px-6 sm:px-8 py-3 rounded-md text-base sm:text-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300"
+                >
+                  Send Us a Message
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </section>
-      
+
       {/* Contact Form Popup */}
-      <ContactFormPopup 
+      <ContactFormPopup
         isOpen={isContactPopupOpen}
         onClose={closeContactPopup}
       />
-      
+
       <Footer />
     </div>
   );
