@@ -249,10 +249,10 @@ const ContactFormPopup: React.FC<ContactFormPopupProps> = ({ isOpen, onClose }) 
                 You can also contact us directly at:
               </p>
               <a
-                href="mailto:support@zippstore.com"
+                href="mailto:sales@zippstor.com"
                 className="text-navy-700 hover:text-navy-800 font-medium text-sm break-all"
               >
-                support@zippstore.com
+                sales@zippstor.com
               </a>
             </div>
           )}

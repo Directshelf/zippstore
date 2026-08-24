@@ -54,8 +54,8 @@ const Header: React.FC<HeaderProps> = ({ openContactPopup }) => {
 
           {/* Phone Number */}
           <div className="hidden md:flex items-center">
-            <a href="tel:09849643621" className="text-white bg-blue-600 px-5 py-2 rounded-md hover:bg-blue-700 transition-colors text-base font-medium flex items-center ml-4">
-              <Phone className="w-4 h-4 mr-2" /> 09849643621
+            <a href="tel:+91 99027 53404" className="text-white bg-blue-600 px-5 py-2 rounded-md hover:bg-blue-700 transition-colors text-base font-medium flex items-center ml-4">
+              <Phone className="w-4 h-4 mr-2" /> +91 99027 53404
             </a>
           </div>
 
@@ -81,8 +81,8 @@ const Header: React.FC<HeaderProps> = ({ openContactPopup }) => {
               <a href="#formats" className="text-gray-800 hover:text-navy-700 hover:bg-blue-50 px-4 py-3 rounded-lg transition-all duration-300 text-lg font-semibold" onClick={() => setIsMobileMenuOpen(false)}>Formats</a>
               <a href="#about" className="text-gray-800 hover:text-navy-700 hover:bg-blue-50 px-4 py-3 rounded-lg transition-all duration-300 text-lg font-semibold" onClick={() => setIsMobileMenuOpen(false)}>About Us</a>
               <a href="#" className="text-gray-800 hover:text-navy-700 hover:bg-blue-50 px-4 py-3 rounded-lg transition-all duration-300 text-lg font-semibold" onClick={(e) => { e.preventDefault(); openContactPopup(); setIsMobileMenuOpen(false); }}>Contact</a>
-              <a href="tel:09849643621" className="text-white bg-blue-600 px-5 py-3 rounded-md hover:bg-blue-700 transition-colors text-base font-medium text-center mt-2 flex items-center justify-center" onClick={() => setIsMobileMenuOpen(false)}>
-                <Phone className="w-4 h-4 mr-2" /> 09849643621
+              <a href="tel:+91 99027 53404" className="text-white bg-blue-600 px-5 py-3 rounded-md hover:bg-blue-700 transition-colors text-base font-medium text-center mt-2 flex items-center justify-center" onClick={() => setIsMobileMenuOpen(false)}>
+                <Phone className="w-4 h-4 mr-2" /> +91 99027 53404
               </a>
             </nav>
           </div>
